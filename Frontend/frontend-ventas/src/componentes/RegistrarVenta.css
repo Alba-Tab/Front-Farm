@@ -1,0 +1,779 @@
+/* Opciones de Pago - RegistrarVenta.css */
+
+.pago-card {
+  border-radius: 1.2rem;
+  box-shadow: 0 4px 18px 0 rgba(34, 34, 34, 0.08);
+  background: #fff;
+  overflow: hidden;
+  border: 1.5px solid #e5e7eb;
+  transition: min-height 0.35s cubic-bezier(0.4,0,0.2,1), box-shadow 0.18s, border 0.18s;
+  min-height: 220px; /* Ajusta según el contenido mínimo esperado */
+  position: relative;
+}
+.pago-card-header {
+  border-top-left-radius: 1.2rem;
+  border-top-right-radius: 1.2rem;
+  background: #2563eb;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.12rem;
+  letter-spacing: 0.5px;
+  padding: 1rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  border-bottom: 1.5px solid #e5e7eb;
+}
+.pago-card-body {
+  padding: 1.3rem 1.2rem 1.2rem 1.2rem;
+  background: #f8fafc;
+  transition: opacity 0.28s cubic-bezier(0.4,0,0.2,1);
+}
+.pago-card-body.animating {
+  opacity: 0.6;
+}
+.pago-opciones-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: end;
+  gap: 1.2rem;
+}
+.pago-form-group {
+  min-width: 170px;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.pago-form-group label {
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 0.4rem;
+}
+.pago-switch-label {
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 1.05rem;
+  color: #222;
+}
+.pago-card-footer {
+  background: none;
+  border-top: none;
+  border-bottom-left-radius: 1.2rem;
+  border-bottom-right-radius: 1.2rem;
+  padding: 1rem 1.2rem 1.2rem 1.2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1.2rem;
+}
+.pago-card-footer .btn {
+  min-width: 120px;
+  font-weight: 700;
+  font-size: 1.02rem;
+  letter-spacing: 0.5px;
+  border-radius: 0.7rem;
+  box-shadow: 0 2px 8px 0 rgba(34,34,34,0.07);
+  border: none;
+}
+.pago-card-footer .btn-success {
+  background: #22c55e;
+  color: #fff;
+}
+.pago-card-footer .btn-success:disabled {
+  background: #b6e7c9;
+  color: #fff;
+}
+.pago-card-footer .btn-secondary {
+  background: #64748b;
+  color: #fff;
+}
+.pago-card-footer .btn:hover {
+  filter: brightness(0.95);
+}
+select.form-control {
+  border-radius: 0.7rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+  border: 1.5px solid #e5e7eb;
+  background: #fff;
+  color: #222;
+}
+.custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #2563eb;
+  border-color: #2563eb;
+}
+.custom-control-label::before {
+  border-radius: 0.7rem;
+  border: 1.5px solid #e5e7eb;
+  background: #fff;
+}
+@media (max-width: 900px) {
+  .pago-opciones-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.7rem;
+  }
+  .pago-form-group {
+    min-width: 0;
+    width: 100%;
+    align-items: flex-start;
+  }
+  .pago-card-footer {
+    flex-direction: column;
+    gap: 0.7rem;
+    align-items: stretch;
+  }
+}
+
+/* REGISTRO DE VENTA - estilo tipo imagen */
+
+.venta-container, .venta-container-encuadre {
+  max-width: 100vw;
+  width: 100vw;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  margin: 4.5rem auto 0 auto;
+  background: #f7fafd;
+  border-radius: 14px;
+  box-shadow: 0 4px 32px 0 rgba(34,34,34,0.10);
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  border: 2px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+@media (max-width: 1200px) {
+  .venta-container, .venta-container-encuadre {
+    padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px 0 rgba(34,34,34,0.08);
+  }
+}
+@media (max-width: 700px) {
+  .venta-container, .venta-container-encuadre {
+    padding: 0.5rem 0.3rem 0.5rem 1rem; /* Más margen a la izquierda */
+    border-radius: 7px;
+    box-shadow: none;
+  }
+}
+.venta-card, .venta-card.venta-card-cliente, .venta-card.venta-card-productos, .venta-card.venta-card-pago {
+  max-width: 900px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1.2rem 2.5rem 1.2rem 2.5rem;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px #c7d2fe22;
+  border: 1.5px solid #e5e7ef;
+  box-sizing: border-box;
+}
+@media (max-width: 1200px) {
+  .venta-card, .venta-card.venta-card-cliente, .venta-card.venta-card-productos, .venta-card.venta-card-pago {
+    max-width: 98vw;
+    padding: 1.2rem 0.7rem 1.2rem 0.7rem;
+  }
+}
+@media (max-width: 700px) {
+  .venta-card, .venta-card.venta-card-cliente, .venta-card.venta-card-productos, .venta-card.venta-card-pago {
+    padding: 0.7rem 0.1rem 0.7rem 1.3rem; /* Mucho más margen a la izquierda, menos a la derecha */
+  }
+  .venta-card-body {
+    padding: 0.7rem 0.1rem 0.7rem 1.3rem !important; /* Igual que la tarjeta */
+  }
+  .venta-table-wrapper {
+    padding: 0.5rem 0.1rem 0.5rem 1.3rem;
+    border-radius: 0.7rem;
+    box-shadow: none;
+    background: #fff;
+    width: 100%;
+    max-width: 100vw;
+    margin: 0 auto 1.2rem auto;
+    overflow-x: auto;
+    overflow-y: visible;
+    box-sizing: border-box;
+  }
+  .venta-table {
+    min-width: 480px;
+    width: max-content;
+    font-size: 0.93rem;
+    background: #fff;
+    border-radius: 0.5rem;
+    margin: 0;
+  }
+  .venta-table th, .venta-table td {
+    padding: 0.22rem 0.07rem;
+    font-size: 0.91rem;
+    text-align: left;
+    word-break: break-word;
+  }
+  .venta-table th {
+    background: #e0e7ff;
+    color: #2563eb;
+    font-weight: 700;
+    font-size: 1.01rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
+  .venta-table-empty {
+    text-align: center;
+    color: #888;
+    font-size: 1.08rem;
+    min-width: 100%;
+    display: table-cell;
+    background: #f8fafc;
+  }
+}
+.venta-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #222;
+  margin-bottom: 0.7rem;
+  letter-spacing: 0.5px;
+}
+.venta-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 8px 0 rgba(34,34,34,0.04);
+  border: 1.5px solid #e5e7eb;
+  margin-bottom: 0.5rem;
+  transition: all 0.28s cubic-bezier(.4,0,.2,1);
+  overflow: hidden;
+  min-height: 220px;
+}
+.venta-card-header {
+  font-weight: 700;
+  font-size: 1.08rem;
+  color: #222;
+  background: #f3f6fa;
+  border-bottom: 1.5px solid #e5e7eb;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  padding: 0.7rem 1.2rem;
+}
+.venta-card-body {
+  padding: 1.1rem 1.2rem 1.1rem 1.2rem;
+  transition: padding 0.28s cubic-bezier(.4,0,.2,1), height 0.28s cubic-bezier(.4,0,.2,1);
+}
+.venta-cliente-row {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+.venta-input {
+  border: 1.5px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 0.5rem 0.9rem;
+  font-size: 1.05rem;
+  color: #222;
+  background: #f8fafc;
+  min-width: 180px;
+  flex: 1;
+  margin-bottom: 0.2rem;
+}
+.venta-producto-row {
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1.1rem;
+}
+.venta-btn {
+  border: none;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+}
+.venta-btn-agregar {
+  background: #199e8e;
+  color: #fff;
+  min-width: 160px;
+}
+.venta-btn-agregar:hover {
+  background: #157c6e;
+}
+.venta-btn-eliminar {
+  background: #e74c3c;
+  color: #fff;
+  font-size: 1rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+}
+.venta-btn-eliminar:hover {
+  background: #c0392b;
+}
+/* Mejoras responsivas y visuales para la tabla de productos en ventas */
+.venta-table-wrapper {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px #c7d2fe22;
+  padding: 1.2rem 1rem 1.2rem 1rem;
+  overflow-x: auto;
+  width: 100%;
+  max-width: 100vw;
+  margin: 0 auto 1.2rem auto;
+  scrollbar-color: #a21caf #f3e8ff;
+  scrollbar-width: thin;
+  box-sizing: border-box;
+}
+.venta-table-wrapper::-webkit-scrollbar {
+  height: 10px;
+}
+.venta-table-wrapper::-webkit-scrollbar-thumb {
+  background: #a21caf;
+  border-radius: 6px;
+}
+.venta-table-wrapper::-webkit-scrollbar-track {
+  background: #f3e8ff;
+  border-radius: 6px;
+}
+.venta-table {
+  min-width: 1000px;
+  width: 100%;
+  table-layout: auto;
+  font-size: 1.01rem;
+  background: #fff;
+}
+@media (max-width: 1200px) {
+  .venta-table {
+    min-width: 600px;
+    font-size: 0.93rem;
+  }
+}
+@media (max-width: 700px) {
+  .venta-container, .venta-container-encuadre {
+    padding: 0.5rem 0.3rem 0.5rem 1rem; /* Más margen a la izquierda */
+  }
+  .venta-card, .venta-card.venta-card-cliente, .venta-card.venta-card-productos, .venta-card.venta-card-pago {
+    padding: 0.7rem 0.1rem 0.7rem 1.3rem; /* Mucho más margen a la izquierda, menos a la derecha */
+  }
+  .venta-card-body {
+    padding: 0.7rem 0.1rem 0.7rem 1.3rem !important; /* Igual que la tarjeta */
+  }
+  .venta-table-wrapper {
+    padding: 0.5rem 0.1rem 0.5rem 1.3rem;
+    border-radius: 0.7rem;
+    box-shadow: none;
+    background: #fff;
+    width: 100%;
+    max-width: 100vw;
+    margin: 0 auto 1.2rem auto;
+    overflow-x: auto;
+    overflow-y: visible;
+    box-sizing: border-box;
+  }
+  .venta-table {
+    min-width: 480px;
+    width: max-content;
+    font-size: 0.93rem;
+    background: #fff;
+    border-radius: 0.5rem;
+    margin: 0;
+  }
+  .venta-table th, .venta-table td {
+    padding: 0.22rem 0.07rem;
+    font-size: 0.91rem;
+    text-align: left;
+    word-break: break-word;
+  }
+  .venta-table th {
+    background: #e0e7ff;
+    color: #2563eb;
+    font-weight: 700;
+    font-size: 1.01rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
+  .venta-table-empty {
+    text-align: center;
+    color: #888;
+    font-size: 1.08rem;
+    min-width: 100%;
+    display: table-cell;
+    background: #f8fafc;
+  }
+}
+body, html {
+  overflow-x: hidden !important;
+}
+.venta-card-pago {
+  margin-top: 1.2rem;
+  transition: all 0.28s cubic-bezier(.4,0,.2,1);
+  overflow: hidden;
+  min-height: 220px;
+}
+.venta-pago-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+.venta-pago-metodo {
+  flex: 1;
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.venta-pago-resumen {
+  flex: 1;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  align-items: flex-end;
+}
+.venta-pago-item {
+  font-size: 1.05rem;
+  color: #222;
+  font-weight: 500;
+}
+.venta-pago-total {
+  font-size: 1.18rem;
+  color: #199e8e;
+  font-weight: 800;
+  margin-top: 0.3rem;
+}
+.venta-btns-row {
+  display: flex;
+  gap: 2.5rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+.venta-btn-cancelar {
+  background: #e5e7eb;
+  color: #222;
+  min-width: 220px;
+}
+.venta-btn-cancelar:hover {
+  background: #cbd5e1;
+}
+.venta-btn-registrar {
+  background: #199e8e;
+  color: #fff;
+  min-width: 220px;
+}
+.venta-btn-registrar:disabled {
+  background: #b6e7c9;
+  color: #fff;
+}
+.venta-btn-registrar:hover:not(:disabled) {
+  background: #157c6e;
+}
+@media (max-width: 900px) {
+  .venta-container {
+    padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+  }
+  .venta-cliente-row, .venta-producto-row, .venta-pago-row, .venta-btns-row {
+    flex-direction: column;
+    gap: 0.7rem;
+    align-items: stretch;
+  }
+  .venta-pago-resumen {
+    align-items: flex-start;
+  }
+  .venta-container-encuadre {
+    padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+  }
+}
+.venta-container-encuadre {
+  max-width: 1800px;
+  margin: 4.5rem auto 0 auto;
+  background: #f7fafd;
+  border-radius: 14px;
+  box-shadow: 0 4px 32px 0 rgba(34,34,34,0.10);
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  border: 2px solid #e5e7eb;
+}
+.venta-card-cliente .venta-input {
+  min-width: 180px;
+  max-width: 260px;
+}
+.venta-metodo-group {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 0.5rem;
+  align-items: stretch;
+}
+.venta-metodo-radio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #f3f6fa;
+  border: 2px solid #e5e7eb; /* SIEMPRE 2px para evitar movimiento */
+  border-radius: 8px;
+  padding: 0.5rem 1.1rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: #222;
+  cursor: pointer;
+  transition: border 0.18s, background 0.18s, color 0.18s, box-shadow 0.18s;
+  box-shadow: 0 1px 4px 0 rgba(34,34,34,0.04);
+  user-select: none;
+  min-width: 150px;
+  height: 50px; /* Altura más baja para todas */
+  box-sizing: border-box;
+  text-align: center;
+  white-space: nowrap; /* Fuerza una sola línea */
+  overflow: hidden; /* Oculta el exceso */
+  text-overflow: ellipsis; /* Puntos suspensivos si es muy largo */
+}
+.metodo-transferencia {
+  min-width: 210px; /* Solo la transferencia es más ancha */
+}
+.venta-metodo-radio.selected {
+  border: 2px solid #199e8e;
+  background: #e0f2f1;
+  color: #199e8e;
+  box-shadow: 0 2px 8px 0 rgba(25,158,142,0.08);
+}
+.venta-metodo-radio input[type="radio"] {
+  display: none;
+}
+.venta-metodo-radio .icon {
+  font-size: 1.18rem;
+  margin-right: 0.3rem;
+  color: #199e8e;
+  display: flex;
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .venta-metodo-group {
+    flex-direction: column;
+    gap: 0.7rem;
+    align-items: stretch;
+  }
+  .venta-metodo-radio {
+    width: 100%;
+    min-width: 0;
+    justify-content: flex-start;
+  }
+}
+
+/* RegistrarProducto.css - Estilos modernos y responsivos para el formulario de productos */
+
+.registrar-producto-container {
+  max-width: 700px;
+  margin: 2.5rem auto 0 auto;
+  background: #f8fafc;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 32px 0 rgba(30,41,59,0.10);
+  padding: 2.5rem 2rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.registrar-producto-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2563eb;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.registrar-producto-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.3rem 2.2rem;
+}
+
+@media (max-width: 700px) {
+  .registrar-producto-form {
+    grid-template-columns: 1fr;
+    gap: 1.1rem 0;
+  }
+  .registrar-producto-container {
+    padding: 1.2rem 0.7rem;
+  }
+}
+
+.registrar-producto-label {
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+.registrar-producto-input, .registrar-producto-select {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border-radius: 0.7rem;
+  border: 1.5px solid #cbd5e1;
+  background: #fff;
+  font-size: 1.08rem;
+  color: #334155;
+  transition: border 0.2s;
+  margin-bottom: 0.2rem;
+}
+.registrar-producto-input:focus, .registrar-producto-select:focus {
+  border: 1.5px solid #2563eb;
+  outline: none;
+}
+
+.registrar-producto-select {
+  appearance: none;
+  background: url('data:image/svg+xml;utf8,<svg fill="%232563eb" height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"/></svg>') no-repeat right 1rem center/1.2em;
+}
+
+.registrar-producto-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1.2rem;
+  margin-top: 1.2rem;
+}
+
+.registrar-producto-btn {
+  padding: 0.85rem 2.2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 0.8rem;
+  border: none;
+  background: linear-gradient(90deg, #2563eb 60%, #22c55e 100%);
+  color: #fff;
+  box-shadow: 0 2px 8px #c7d2fe;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.registrar-producto-btn:hover {
+  background: linear-gradient(90deg, #1d4ed8 60%, #16a34a 100%);
+  box-shadow: 0 4px 16px #a5b4fc;
+}
+
+.registrar-producto-alert {
+  grid-column: 1 / -1;
+  background: #fef9c3;
+  color: #b45309;
+  border-radius: 0.7rem;
+  padding: 0.8rem 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  border: 1.5px solid #fde68a;
+  text-align: center;
+}
+
+/* Mejoras para accesibilidad y UX */
+.registrar-producto-input[aria-invalid="true"], .registrar-producto-select[aria-invalid="true"] {
+  border: 1.5px solid #e11d48;
+  background: #fef2f2;
+}
+
+.registrar-producto-label[aria-required="true"]::after {
+  content: '*';
+  color: #e11d48;
+  margin-left: 0.2em;
+}
+
+/* Ajuste responsivo: cuadro de información del cliente más compacto y centrado */
+.venta-card.venta-card-cliente {
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1.2rem 1.2rem 1.2rem 1.2rem;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px #c7d2fe22;
+  border: 1.5px solid #e5e7ef;
+}
+@media (max-width: 600px) {
+  .venta-card.venta-card-cliente {
+    max-width: 98vw;
+    padding: 0.7rem 0.3rem 0.7rem 0.3rem;
+    border-radius: 0.5rem;
+    box-shadow: none;
+  }
+}
+
+/* Ajuste: fondo de las tarjetas de productos y pago más compacto y ajustado solo a los inputs */
+.venta-card.venta-card-productos,
+.venta-card.venta-card-pago {
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1.2rem 1.2rem 1.2rem 1.2rem;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px #c7d2fe22;
+  border: 1.5px solid #e5e7ef;
+}
+@media (max-width: 600px) {
+  .venta-card.venta-card-productos,
+  .venta-card.venta-card-pago {
+    max-width: 98vw;
+    padding: 0.7rem 0.3rem 0.7rem 0.3rem;
+    border-radius: 0.5rem;
+    box-shadow: none;
+  }
+}
+.venta-card.venta-card-cliente,
+.venta-card.venta-card-productos,
+.venta-card.venta-card-pago {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1.2rem 2.5rem 1.2rem 2.5rem;
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px #c7d2fe22;
+  border: 1.5px solid #e5e7ef;
+}
+@media (max-width: 1200px) {
+  .venta-card.venta-card-cliente,
+  .venta-card.venta-card-productos,
+  .venta-card.venta-card-pago {
+    max-width: 98vw;
+    padding: 1.2rem 0.7rem 1.2rem 0.7rem;
+  }
+}
+@media (max-width: 600px) {
+  .venta-card.venta-card-cliente,
+  .venta-card.venta-card-productos,
+  .venta-card.venta-card-pago {
+    max-width: 98vw;
+    padding: 0.7rem 0.3rem 0.7rem 0.3rem;
+    border-radius: 0.5rem;
+    box-shadow: none;
+  }
+}
+
+/* --- MEJORA DE CARD BODY EN RESPONSIVO --- */
+@media (max-width: 700px) {
+  .venta-card-body {
+    padding: 0.7rem 0.2rem 0.7rem 0.2rem !important;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 0.5rem;
+    overflow-x: hidden;
+    display: block;
+    position: relative;
+    left: unset;
+    right: unset;
+    transform: none;
+  }
+}
+
+/* Renombrar la clase .header a .venta-header para evitar conflictos */
+.venta-header {
+  background: #2563eb;
+  color: #fff;
+  padding: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+.venta-label {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 5px;
+}

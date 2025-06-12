@@ -1,0 +1,986 @@
+/* Estilos para la página unificada de Bitácora y Pérdidas */
+.bitacora-perdidas-container {
+  padding: 2rem 2.5rem;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+/* Header unificado */
+.unified-header {
+  margin-bottom: 2rem;
+}
+
+.unified-header h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #2563eb;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Navegación por pestaanas principal */
+.tab-navigation {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.nav-tab {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  background: #fff;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-tab:hover {
+  border-color: #2563eb;
+  color: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37,99,235,0.2);
+}
+
+.nav-tab.active {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  border-color: #2563eb;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37,99,235,0.3);
+}
+
+.nav-tab i {
+  font-size: 1.2rem;
+}
+
+/* Sección de Bitácora */
+.bitacora-section {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Estadísticas de Bitácora */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card-bitacora {
+  background: linear-gradient(135deg, #fff 0%, #f8fafc 100%);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-left: 4px solid;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card-bitacora:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.stat-card-bitacora.blue {
+  border-left-color: #2563eb;
+}
+
+.stat-card-bitacora.green {
+  border-left-color: #10b981;
+}
+
+.stat-card-bitacora.yellow {
+  border-left-color: #f59e0b;
+}
+
+.stat-card-bitacora.red {
+  border-left-color: #ef4444;
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label-bitacora {
+  font-size: 1rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* Contenido principal de bitácora */
+.bitacora-main-content {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.section-header span:first-child {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.real-time-indicator {
+  font-size: 0.9rem;
+  color: #10b981;
+  font-weight: 500;
+}
+
+/* Filtros de bitácora */
+.filters-container {
+  margin-bottom: 2rem;
+}
+
+.filters-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  align-items: end;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filter-group label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.9rem;
+}
+
+.filter-group select,
+.filter-group input {
+  padding: 0.75rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: #fff;
+  transition: border-color 0.2s ease;
+}
+
+.filter-group select:focus,
+.filter-group input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+
+.btn-filter {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  height: fit-content;
+}
+
+.btn-filter:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+}
+
+/* Contenedor de logs */
+.log-container {
+  max-height: 600px;
+  overflow-y: auto;
+  border-radius: 12px;
+  background: #f8fafc;
+  padding: 1rem;
+}
+
+.log-entry {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.log-entry:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.log-status {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.log-status.success {
+  background: #10b981;
+}
+
+.log-details {
+  flex: 1;
+}
+
+.log-action {
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.25rem;
+}
+
+.log-user {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-bottom: 0.25rem;
+}
+
+.log-description {
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+
+.log-timestamp {
+  font-size: 0.85rem;
+  color: #6b7280;
+  font-weight: 500;
+  text-align: right;
+}
+
+.bitacora-loading,
+.bitacora-error {
+  text-align: center;
+  padding: 2rem;
+  color: #6b7280;
+  font-size: 1.1rem;
+}
+
+.bitacora-error {
+  color: #ef4444;
+}
+
+/* Sección de Pérdidas */
+.perdidas-section {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Estadísticas de pérdidas */
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card-perdidas {
+  background: linear-gradient(135deg, #fff 0%, #f8fafc 100%);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-top: 4px solid;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card-perdidas:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.stat-card-perdidas.red {
+  border-top-color: #ef4444;
+}
+
+.stat-card-perdidas.yellow {
+  border-top-color: #f59e0b;
+}
+
+.stat-card-perdidas.blue {
+  border-top-color: #2563eb;
+}
+
+.stat-card-perdidas.green {
+  border-top-color: #10b981;
+}
+
+.stat-card-perdidas h3 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 0.5rem 0;
+}
+
+.stat-title {
+  font-size: 1rem;
+  color: #6b7280;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* Pestañas secundarias */
+.tab-container {
+  margin-bottom: 2rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.tab {
+  padding: 1rem 2rem;
+  background: #f8fafc;
+  border: 2px solid #e5e7eb;
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+  font-weight: 600;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab:hover {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.tab.active {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+}
+
+/* Tarjetas */
+.card-bitacora {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin-bottom: 2rem;  overflow-x: visible;
+}
+
+.card-bitacora-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 1.2rem;
+  font-weight: 700;  color: #2563eb;
+}
+
+.card-bitacora-body {
+  padding: 2rem;
+}
+
+/* Formularios */
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 0.75rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  background: #fff;
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+
+/* Botones */
+.btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37,99,235,0.3);
+}
+
+.btn-secondary {
+  background: #f8fafc;
+  color: #374151;
+  border: 2px solid #e5e7eb;
+}
+
+.btn-secondary:hover {
+  background: #e5e7eb;
+  transform: translateY(-1px);
+}
+
+/* Mensajes */
+.error-msg {
+  color: #ef4444;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.success-msg {
+  color: #10b981;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+/* Tablas */
+.perdidas-reporte-table-wrapper {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  background: #fff;
+  margin-top: 1rem;
+}
+
+.perdidas-reporte-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.95rem;
+}
+
+.perdidas-reporte-table th {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #ffffff;
+  font-weight: 700;
+  padding: 1.2rem 1.5rem;
+  text-align: left;
+  position: relative;
+  border: none;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.perdidas-reporte-table th:first-child {
+  border-top-left-radius: 12px;
+}
+
+.perdidas-reporte-table th:last-child {
+  border-top-right-radius: 12px;
+}
+
+.perdidas-reporte-table td {
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  color: #374151;
+  transition: all 0.2s ease;
+}
+
+.perdidas-reporte-table tbody tr {
+  transition: all 0.2s ease;
+}
+
+.perdidas-reporte-table tbody tr:hover {
+  background: rgba(37, 99, 235, 0.05);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.perdidas-reporte-table tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 12px;
+}
+
+.perdidas-reporte-table tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 12px;
+}
+
+/* Badges de estado */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 1rem;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #fff;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.status-vencido { 
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); 
+}
+
+.status-danado { 
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); 
+}
+
+.status-extravio { 
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); 
+}
+
+.status-robo { 
+  background: linear-gradient(135deg, #9333ea 0%, #7e22ce 100%); 
+}
+
+/* Acciones */
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.actions button {
+  background: #f3f4f6;
+  border: none;
+  width: 36px;
+  height: 36px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.actions button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.actions .edit {
+  color: #2563eb;
+}
+
+.actions .delete {
+  color: #ef4444;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+}
+
+.modal-header h2 {
+  margin: 0 0 1.5rem 0;
+  color: #2563eb;
+  font-size: 1.5rem;
+}
+
+/* Gráfico placeholder */
+.chart-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  background: #f8fafc;
+  border-radius: 8px;
+  border: 2px dashed #d1d5db;
+}
+
+.chart-placeholder {
+  color: #6b7280;
+  font-size: 1.1rem;
+  font-style: italic;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .bitacora-perdidas-container {
+    padding: 1rem;
+  }
+  
+  .unified-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .tab-navigation {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .nav-tab {
+    text-align: center;
+  }
+  
+  .stats-grid,
+  .stats-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .filters-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .tabs {
+  flex-wrap: wrap;
+  }
+  
+  .card-bitacora-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .modal {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+}
+
+/* Mobile responsive styles for report tables */
+@media (max-width: 768px) {
+  /* Container adjustments */
+  .perdidas-section {
+    padding: 1rem 0.5rem;
+  }
+  
+  .card-bitacora {
+    margin: 0 0.5rem 1.5rem 0.5rem;
+    border-radius: 12px;
+  }
+  
+  .card-bitacora-header {
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .card-bitacora-body {
+    padding: 1rem 0.5rem;
+  }
+  
+  /* Table wrapper for horizontal scrolling */
+  .perdidas-reporte-table-wrapper {
+    margin: 1rem 0;
+    border-radius: 8px;
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #2563eb #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  .perdidas-reporte-table-wrapper::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .perdidas-reporte-table-wrapper::-webkit-scrollbar-track {
+    background: #e5e7eb;
+    border-radius: 4px;
+  }
+  
+  .perdidas-reporte-table-wrapper::-webkit-scrollbar-thumb {
+    background: #2563eb;
+    border-radius: 4px;
+  }
+  
+  /* Table adjustments for mobile */
+  .perdidas-reporte-table {
+    min-width: 700px; /* Ensure minimum width for all columns to be visible */
+    font-size: 0.875rem;
+    white-space: nowrap;
+  }
+  
+  .perdidas-reporte-table th {
+    padding: 0.875rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  
+  .perdidas-reporte-table td {
+    padding: 0.875rem 1rem;
+    font-size: 0.875rem;
+    vertical-align: middle;
+  }
+  
+  /* Status badges mobile adjustments */
+  .status-badge {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border-radius: 20px;
+    display: inline-block;
+    text-align: center;
+    min-width: fit-content;
+  }
+  
+  /* Action buttons mobile adjustments */
+  .actions {
+    gap: 0.5rem;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .actions button {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Tab container mobile adjustments */
+  .tab-container {
+    margin-bottom: 1.5rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .tabs {
+    display: flex;
+    gap: 0.5rem;
+    min-width: max-content;
+    padding: 0 0.5rem;
+  }
+  
+  .tab {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    border-radius: 8px 8px 0 0;
+    min-width: max-content;
+  }
+  
+  /* Filter group mobile adjustments */
+  .filter-group {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+    width: 100%;
+  }
+  
+  .filter-group select,
+  .filter-group button {
+    width: 100%;
+    max-width: 200px;
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra small screens */
+  .perdidas-section {
+    padding: 0.5rem 0.25rem;
+  }
+  
+  .card-bitacora {
+    margin: 0 0.25rem 1rem 0.25rem;
+    border-radius: 8px;
+  }
+  
+  .card-bitacora-header {
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+  }
+  
+  .card-bitacora-body {
+    padding: 0.75rem 0.25rem;
+  }
+  
+  .perdidas-reporte-table-wrapper {
+    margin: 0.5rem 0;
+    border-radius: 6px;
+  }
+  
+  .perdidas-reporte-table {
+    min-width: 600px; /* Slightly smaller min-width for very small screens */
+    font-size: 0.8125rem;
+  }
+  
+  .perdidas-reporte-table th {
+    padding: 0.75rem 0.75rem;
+    font-size: 0.7rem;
+  }
+  
+  .perdidas-reporte-table td {
+    padding: 0.75rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+  
+  .status-badge {
+    padding: 0.2rem 0.6rem;
+    font-size: 0.65rem;
+    border-radius: 16px;
+  }
+  
+  .actions button {
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;
+  }
+  
+  .tab {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.8125rem;
+  }
+  
+  /* Stack filter elements vertically on very small screens */
+  .card-bitacora-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  
+  .filter-group {
+    align-items: stretch;
+  }
+  
+  .filter-group select,
+  .filter-group button {
+    max-width: none;
+    width: 100%;
+  }
+}
+
+/* Landscape orientation adjustments for mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .perdidas-reporte-table {
+    min-width: 800px; /* Larger min-width in landscape mode */
+  }
+  
+  .perdidas-reporte-table th {
+    padding: 1rem 1.25rem;
+    font-size: 0.8rem;
+  }
+  
+  .perdidas-reporte-table td {
+    padding: 1rem 1.25rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Ensure tables are accessible on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .perdidas-reporte-table tbody tr:hover {
+    background: transparent;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .perdidas-reporte-table tbody tr:active {
+    background: rgba(37, 99, 235, 0.1);
+  }
+  
+  .actions button:hover {
+    transform: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  }
+  
+  .actions button:active {
+    transform: scale(0.95);
+    background: #e5e7eb;
+  }
+}

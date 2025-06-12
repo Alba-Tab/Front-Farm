@@ -1,0 +1,872 @@
+/* Estilos base para la página de Gestión de Pérdidas */
+.gestionar-perdidas-main {
+  padding: 2rem 2.5rem 2.5rem 2.5rem;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+/* Barra superior */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+.top-bar h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2563eb;
+  letter-spacing: 0.01em;
+}
+.notifications {
+  display: flex;
+  gap: 1.2rem;
+  align-items: center;
+}
+.notifications .badge {
+  display: inline-block;
+  background: #ef4444;
+  color: #fff;
+  font-size: 0.8rem;
+  border-radius: 1rem;
+  padding: 0.1rem 0.5rem;
+  margin-left: -0.7rem;
+  margin-top: -1.2rem;
+  position: absolute;
+}
+/* Estadísticas */
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+@media (max-width: 1100px) {
+  .stats-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 700px) {
+  .stats-container {
+    grid-template-columns: 1fr;
+  }
+}
+.stat-card-perdidas {
+  flex: 1;
+  background: #fff;
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 8px #e0e7ff;
+  padding: 1.2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.stat-card-perdidas h3, .stat-card-perdidas .stat-title {
+  color: #1e293b !important;
+}
+.stat-card-perdidas.red h3 { color: #ef4444; }
+.stat-card-perdidas.yellow h3 { color: #eab308; }
+.stat-card-perdidas.blue h3 { color: #2563eb; }
+.stat-card-perdidas.green h3 { color: #22c55e; }
+.stat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 2rem;
+  margin: 0 auto 0.5rem auto;
+  box-shadow: 0 2px 8px #e0e7ff33;
+}
+.stat-title {
+  font-weight: 700;
+  font-size: 1.08rem;
+  margin-bottom: 0.1rem;
+}
+.stat-card.red {
+  border-top: 4px solid #ef4444;
+}
+.stat-card.yellow {
+  border-top: 4px solid #eab308;
+}
+.stat-card.blue {
+  border-top: 4px solid #2563eb;
+}
+.stat-card.green {
+  border-top: 4px solid #22c55e;
+}
+.stat-desc {
+  display: block;
+  margin-top: 0.3rem;
+  color: #64748b;
+  font-size: 0.98rem;
+  font-weight: 400;
+}
+/* Tabs */
+.tab-container {
+  margin-bottom: 1.5rem;
+}
+.tabs {
+  display: flex;
+  gap: 1.2rem;
+}
+.tab {
+  padding: 0.7rem 2.2rem;
+  border-radius: 1.2rem 1.2rem 0 0;
+  background: #e0e7ff;
+  color: #2563eb;
+  font-weight: 600;
+  font-size: 1.08rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.tab.active {
+  background: #2563eb;
+  color: #fff;
+}
+@media (max-width: 700px) {
+  .tabs {
+    display: flex;
+    gap: 0.7rem;
+    padding-left: 1.3rem;
+    padding-right: 0.1rem;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #2563eb #e0e7ff;
+    box-sizing: border-box;
+  }
+  .tab {
+    min-width: 180px;
+    padding: 0.7rem 1.2rem;
+    font-size: 1.01rem;
+    border-radius: 1.2rem 1.2rem 0 0;
+    background: #e0e7ff;
+    color: #2563eb;
+    font-weight: 600;
+    text-align: center;
+    white-space: nowrap;
+    flex: none;
+    transition: background 0.18s, color 0.18s;
+  }
+  .tab.active {
+    background: #2563eb;
+    color: #fff;
+  }
+}
+/* Tarjetas y formularios */
+.card-perdidas {
+  background: #fff;
+  border-radius: 1.2rem;
+  box-shadow: 0 2px 8px #e0e7ff;
+  margin-bottom: 2rem;
+  overflow-x: visible; /* Allow content to overflow horizontally */
+}
+.card-perdidas-header {
+  padding: 1.1rem 1.5rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #2563eb;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-perdidas-body {
+  padding: 1.5rem;
+}
+.form-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.2rem;
+}
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.form-group label {
+  font-weight: 600;
+  color: #334155;
+}
+input, select, textarea {
+  padding: 0.5rem 0.8rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.6rem;
+  font-size: 1rem;
+  background: #f1f5f9;
+  color: #334155;
+  outline: none;
+  transition: border 0.2s;
+}
+input:focus, select:focus, textarea:focus {
+  border: 1.5px solid #2563eb;
+}
+.btn {
+  padding: 0.5rem 1.3rem;
+  border-radius: 0.7rem;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-primary {
+  background: #2563eb;
+  color: #fff;
+}
+.btn-secondary {
+  background: #e0e7ff;
+  color: #2563eb;
+}
+.error-msg {
+  color: #ef4444;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+/* Tabla de reportes */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+thead th {
+  background: #e0e7ff;
+  color: #2563eb;
+  font-weight: 700;
+  padding: 0.7rem 0.5rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+tbody td {
+  padding: 0.7rem 0.5rem;
+  text-align: center;
+  color: #334155;
+}
+.status-badge {
+  display: inline-block;
+  padding: 0.2rem 0.8rem;
+  border-radius: 1rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #fff;
+}
+.status-vencido { background: #ef4444; }
+.status-danado { background: #eab308; }
+.status-extravio { background: #2563eb; }
+.actions button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.1rem;
+  margin: 0 0.2rem;
+}
+.actions .edit { color: #2563eb; }
+.actions .delete { color: #ef4444; }
+/* Gráfico */
+.chart-container {
+  width: 100%;
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chart-placeholder {
+  color: #64748b;
+  font-size: 1.1rem;
+  font-style: italic;
+  opacity: 0.7;
+}
+/* Modal de edición (scrollable) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.35);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+}
+.modal {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  padding: 2rem 2.5rem 1.5rem 2.5rem;
+  min-width: 350px;
+  max-width: 95vw;
+  width: 480px;
+  position: relative;
+  z-index: 10000;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.modal-header {
+  margin-bottom: 1.2rem;
+}
+.modal-header h2 {
+  font-size: 1.3rem;
+  color: #2563eb;
+  font-weight: 700;
+  margin: 0;
+}
+.modal-form .form-row {
+  display: flex;
+  gap: 1.2rem;
+  margin-bottom: 1rem;
+}
+@media (max-width: 600px) {
+  .modal {
+    padding: 1rem;
+    min-width: 90vw;
+    width: 98vw;
+  }
+  .modal-form .form-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+@media (max-width: 700px) {
+  .perdidas-container, .perdidas-card, .perdidas-card-body, .perdidas-table-wrapper {
+    padding-left: 1.3rem !important;
+    padding-right: 0.1rem !important;
+  }
+  .perdidas-table-wrapper {
+    padding: 0.5rem 0.1rem 0.5rem 1.3rem;
+    border-radius: 0.7rem;
+    box-shadow: none;
+    background: #fff;
+    width: 100%;
+    max-width: 100vw;
+    margin: 0 auto 1.2rem auto;
+    overflow-x: auto;
+    overflow-y: visible;
+    box-sizing: border-box;
+  }
+  .perdidas-table {
+    min-width: 480px;
+    width: max-content;
+    font-size: 0.93rem;
+    background: #fff;
+    border-radius: 0.5rem;
+    margin: 0;
+  }
+  .perdidas-table th, .perdidas-table td {
+    padding: 0.22rem 0.07rem;
+    font-size: 0.91rem;
+    text-align: left;
+    word-break: break-word;
+  }
+  .perdidas-table th {
+    background: #e0e7ff;
+    color: #2563eb;
+    font-weight: 700;
+    font-size: 1.01rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
+  .perdidas-table-empty {
+    text-align: center;
+    color: #888;
+    font-size: 1.08rem;
+    min-width: 100%;
+    display: table-cell;
+    background: #f8fafc;
+  }
+}
+/* Reporte de pérdidas */
+.perdidas-reporte-table-wrapper {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px #c7d2fe22;
+  padding: 1.2rem 1rem 1.2rem 1rem;
+  overflow-x: auto;
+  width: 100%;
+  max-width: 100vw;
+  margin: 0 auto 1.2rem auto;
+  scrollbar-color: #2563eb #e0e7ff;
+  scrollbar-width: thin;
+  box-sizing: border-box;
+}
+.perdidas-reporte-table-wrapper::-webkit-scrollbar {
+  height: 10px;
+}
+.perdidas-reporte-table-wrapper::-webkit-scrollbar-thumb {
+  background: #2563eb;
+  border-radius: 6px;
+}
+.perdidas-reporte-table-wrapper::-webkit-scrollbar-track {
+  background: #e0e7ff;
+  border-radius: 6px;
+}
+.perdidas-reporte-table {
+  min-width: 900px;
+  width: max-content;
+  font-size: 1.07rem;
+  background: #fff;
+  border-radius: 0.5rem;
+  margin: 0;
+}
+.perdidas-reporte-table th, .perdidas-reporte-table td {
+  padding: 1.1rem 1.5rem;
+  text-align: left;
+  word-break: break-word;
+  border: 1px solid #e5e7eb;
+}
+.perdidas-reporte-table th {
+  background: #e0e7ff;
+  color: #2563eb;
+  font-weight: 700;
+  font-size: 1.18rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+@media (max-width: 900px) {
+  .perdidas-reporte-table-wrapper {
+    padding: 0.7rem 0.1rem 0.7rem 1.3rem;
+    border-radius: 0.7rem;
+    box-shadow: none;
+    overflow-x: auto !important;
+    display: block;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-color: #2563eb #e0e7ff;
+    scrollbar-width: thin;
+  }
+  .perdidas-reporte-table {
+    min-width: 700px;
+    font-size: 1.03rem;
+  }
+  .perdidas-reporte-table th, .perdidas-reporte-table td {
+    padding: 0.9rem 1.1rem;
+    font-size: 1.03rem;
+  }
+  .perdidas-reporte-table th {
+    font-size: 1.09rem;
+  }
+}
+@media (max-width: 600px) {
+  .perdidas-reporte-table-wrapper {
+    min-width: 0;
+    width: 100vw;
+    max-width: 100vw;
+    padding: 0.1rem 0 0.1rem 0;
+    border-radius: 0.5rem;
+    box-shadow: none;
+    overflow-x: auto !important;
+    display: block;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-color: #2563eb #e0e7ff;
+    scrollbar-width: thin;
+  }
+  .perdidas-reporte-table {
+    min-width: 500px;
+    font-size: 0.97rem;
+  }
+  .perdidas-reporte-table th, .perdidas-reporte-table td {
+    padding: 0.6rem 0.5rem;
+    font-size: 0.97rem;
+  }
+  .perdidas-reporte-table th {
+    font-size: 1.01rem;
+  }
+}
+/* Enhanced mobile responsive styles for report tables */
+@media (max-width: 768px) {
+  /* Container and layout adjustments */
+  .gestionar-perdidas-main {
+    padding: 1rem 0.5rem;
+  }
+  
+  .card-perdidas {
+    margin: 0 0.5rem 1.5rem 0.5rem;
+    border-radius: 12px;
+  }
+  
+  .card-perdidas-header {
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .card-perdidas-body {
+    padding: 1rem 0.5rem;
+  }
+  
+  /* Enhanced table wrapper for better mobile scrolling */
+  .perdidas-reporte-table-wrapper {
+    margin: 1rem 0;
+    padding: 0;
+    border-radius: 8px;
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #2563eb #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background: #fff;
+    border: 1px solid #e5e7eb;
+  }
+  
+  .perdidas-reporte-table-wrapper::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .perdidas-reporte-table-wrapper::-webkit-scrollbar-track {
+    background: #e5e7eb;
+    border-radius: 4px;
+  }
+  
+  .perdidas-reporte-table-wrapper::-webkit-scrollbar-thumb {
+    background: #2563eb;
+    border-radius: 4px;
+  }
+  
+  /* Table mobile optimization */
+  .perdidas-reporte-table {
+    min-width: 700px; /* Ensure all columns are visible */
+    width: max-content;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    margin: 0;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  
+  .perdidas-reporte-table th {
+    padding: 0.875rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: #e0e7ff;
+    color: #2563eb;
+    border: 1px solid #d1d5db;
+    border-top: none;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  
+  .perdidas-reporte-table th:first-child {
+    border-left: none;
+    border-top-left-radius: 8px;
+  }
+  
+  .perdidas-reporte-table th:last-child {
+    border-right: none;
+    border-top-right-radius: 8px;
+  }
+  
+  .perdidas-reporte-table td {
+    padding: 0.875rem 1rem;
+    font-size: 0.875rem;
+    vertical-align: middle;
+    border: 1px solid #e5e7eb;
+    border-top: none;
+    background: #fff;
+  }
+  
+  .perdidas-reporte-table tbody tr:last-child td:first-child {
+    border-bottom-left-radius: 8px;
+  }
+  
+  .perdidas-reporte-table tbody tr:last-child td:last-child {
+    border-bottom-right-radius: 8px;
+  }
+  
+  .perdidas-reporte-table tbody tr:last-child td {
+    border-bottom: 1px solid #d1d5db;
+  }
+  
+  /* Status badges mobile optimization */
+  .status-badge {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border-radius: 20px;
+    display: inline-block;
+    text-align: center;
+    min-width: fit-content;
+    white-space: nowrap;
+  }
+  
+  /* Action buttons mobile optimization */
+  .actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .actions button {
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+    border-radius: 6px;
+    background: #f3f4f6;
+    border: 1px solid #d1d5db;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .actions button:active {
+    transform: scale(0.95);
+    background: #e5e7eb;
+  }
+  
+  .actions .edit {
+    color: #2563eb;
+  }
+  
+  .actions .delete {
+    color: #ef4444;
+  }
+  
+  /* Form elements mobile adjustments */
+  .form-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .form-group {
+    flex: none;
+  }
+  
+  input, select, textarea {
+    font-size: 16px; /* Prevent zoom on iOS */
+    padding: 0.75rem;
+  }
+  
+  .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  /* Tab container mobile adjustments */
+  .tab-container {
+    margin-bottom: 1.5rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .tabs {
+    display: flex;
+    gap: 0.5rem;
+    min-width: max-content;
+    padding: 0 0.5rem;
+  }
+  
+  .tab {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    border-radius: 8px 8px 0 0;
+    min-width: max-content;
+  }
+  
+  /* Filter elements mobile adjustments */
+  .filter-group {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+    width: 100%;
+  }
+  
+  .filter-group select,
+  .filter-group button {
+    width: 100%;
+    max-width: 200px;
+    font-size: 0.875rem;
+    padding: 0.5rem 0.75rem;
+  }
+  
+  /* Stats container mobile adjustments */
+  .stats-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .stat-card-perdidas {
+    padding: 1rem;
+  }
+  
+  .stat-card-perdidas h3 {
+    font-size: 1.5rem;
+  }
+  
+  .stat-title {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra small screens */
+  .gestionar-perdidas-main {
+    padding: 0.5rem 0.25rem;
+  }
+  
+  .card-perdidas {
+    margin: 0 0.25rem 1rem 0.25rem;
+    border-radius: 8px;
+  }
+  
+  .card-perdidas-header {
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+  }
+  
+  .card-perdidas-body {
+    padding: 0.75rem 0.25rem;
+  }
+  
+  .perdidas-reporte-table-wrapper {
+    margin: 0.5rem 0;
+    border-radius: 6px;
+  }
+  
+  .perdidas-reporte-table {
+    min-width: 600px; /* Slightly smaller for very small screens */
+    font-size: 0.8125rem;
+  }
+  
+  .perdidas-reporte-table th {
+    padding: 0.75rem 0.75rem;
+    font-size: 0.7rem;
+  }
+  
+  .perdidas-reporte-table td {
+    padding: 0.75rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+  
+  .status-badge {
+    padding: 0.2rem 0.6rem;
+    font-size: 0.65rem;
+    border-radius: 16px;
+  }
+  
+  .actions button {
+    width: 28px;
+    height: 28px;
+    font-size: 0.9rem;
+  }
+  
+  .tab {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.8125rem;
+  }
+  
+  /* Stack elements vertically on very small screens */
+  .card-perdidas-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  
+  .filter-group {
+    align-items: stretch;
+  }
+  
+  .filter-group select,
+  .filter-group button {
+    max-width: none;
+    width: 100%;
+  }
+  
+  /* Single column stats on very small screens */
+  .stats-container {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .stat-card-perdidas {
+    padding: 0.875rem;
+  }
+  
+  .stat-card-perdidas h3 {
+    font-size: 1.25rem;
+  }
+}
+
+/* Landscape orientation adjustments for mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .perdidas-reporte-table {
+    min-width: 800px; /* Larger min-width in landscape mode */
+  }
+  
+  .perdidas-reporte-table th {
+    padding: 1rem 1.25rem;
+    font-size: 0.8rem;
+  }
+  
+  .perdidas-reporte-table td {
+    padding: 1rem 1.25rem;
+    font-size: 0.9rem;
+  }
+  
+  .stats-container {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .perdidas-reporte-table tbody tr:hover {
+    background: transparent;
+  }
+  
+  .perdidas-reporte-table tbody tr:active {
+    background: rgba(37, 99, 235, 0.1);
+  }
+  
+  .actions button:hover {
+    transform: none;
+  }
+  
+  .actions button:active {
+    transform: scale(0.95);
+    background: #e5e7eb;
+  }
+  
+  .tab:hover {
+    background: #e0e7ff;
+  }
+  
+  .tab:active {
+    background: #c7d2fe;
+  }
+}
+
+/* Renombrar clases para evitar conflictos */
+.perdidas-header {
+  background: #2563eb;
+  color: #fff;
+  padding: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+}
+.perdidas-label {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 5px;
+}

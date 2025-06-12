@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Proveedores y Compras - Farmacia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .header h1 {
+            font-size: 28px;
+            font-weight: 600;
+        }
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary {
+            background: #4f46e5;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #4338ca;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
+        }
+        .btn-secondary {
+            background: #10b981;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-left: 4px solid;
+            transition: transform 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        .stat-card.proveedores {
+            border-left-color: #3b82f6;
+        }
+        .stat-card.compras {
+            border-left-color: #10b981;
+        }
+        .stat-card.monto {
+            border-left-color: #f59e0b;
+        }
+        .stat-card.productos {
+            border-left-color: #8b5cf6;
+        }
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            color: #6b7280;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+        .section-header {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .section-content {
+            padding: 25px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #374151;
+        }
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        .table th {
+            background: #f8fafc;
+            padding: 15px 12px;
+            text-align: left;
+            font-weight: 600;
+            color: #374151;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        .table td {
+            padding: 15px 12px;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .table tr:hover {
+            background: #f8fafc;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .badge-active {
+            background: #dcfce7;
+            color: #166534;
+        }
+        .badge-inactive {
+            background: #fef2f2;
+            color: #991b1b;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 12px;
+            border-radius: 6px;
+        }
+        .btn-edit {
+            background: #f59e0b;
+            color: white;
+        }
+        .btn-edit:hover {
+            background: #d97706;
+        }
+        .btn-delete {
+            background: #ef4444;
+            color: white;
+        }
+        .btn-delete:hover {
+            background: #dc2626;
+        }
+        .btn-view {
+            background: #06b6d4;
+            color: white;
+        }
+        .btn-view:hover {
+            background: #0891b2;
+        }
+        .search-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .search-input {
+            width: 100%;
+            padding: 12px 15px 12px 45px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+        }
+        .full-width {
+            grid-column: 1 / -1;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-header {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .close {
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+        }
+        .modal-body {
+            padding: 25px;
+        }
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏥 Gestión de Proveedores y Compras</h1>
+        <div class="header-actions">
+            <button class="btn btn-secondary" onclick="openModal('proveedorModal')">
+                ➕ Nuevo Proveedor
+            </button>
+            <button class="btn btn-primary" onclick="openModal('compraModal')">
+                🛒 Nueva Compra
+            </button>
+        </div>
+    </div>
+    <div class="container">
+        <!-- Estadísticas -->
+        <div class="stats-grid">
+            <div class="stat-card proveedores">
+                <div class="stat-value">24</div>
+                <div class="stat-label">Proveedores Activos</div>
+            </div>
+            <div class="stat-card compras">
+                <div class="stat-value">156</div>
+                <div class="stat-label">Compras Este Mes</div>
+            </div>
+            <div class="stat-card monto">
+                <div class="stat-value">Bs 45,230</div>
+                <div class="stat-label">Monto Total Compras</div>
+            </div>
+            <div class="stat-card productos">
+                <div class="stat-value">487</div>
+                <div class="stat-label">Productos Comprados</div>
+            </div>
+        </div>
+        <div class="main-content">
+            <!-- Gestión de Proveedores -->
+            <div class="section">
+                <div class="section-header">
+                    <h3 class="section-title">👥 Proveedores</h3>
+                    <button class="btn btn-secondary btn-sm" onclick="openModal('proveedorModal')">
+                        ➕ Agregar
+                    </button>
+                </div>
+                <div class="section-content">
+                    <div class="search-container">
+                        <div class="search-icon">🔍</div>
+                        <input type="text" class="search-input" placeholder="Buscar proveedores...">
+                    </div>
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Teléfono</th>
+                                    <th>Email</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="proveedoresTable">
+                                <tr>
+                                    <td>Farmacéutica González</td>
+                                    <td>+591 2 234 5678</td>
+                                    <td>contacto@farmagonzalez.com</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-view btn-sm">👁️</button>
+                                            <button class="btn btn-edit btn-sm">✏️</button>
+                                            <button class="btn btn-delete btn-sm">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Laboratorios Bayer</td>
+                                    <td>+591 3 345 6789</td>
+                                    <td>ventas@bayer.bo</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-view btn-sm">👁️</button>
+                                            <button class="btn btn-edit btn-sm">✏️</button>
+                                            <button class="btn btn-delete btn-sm">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Pfizer Bolivia</td>
+                                    <td>+591 2 456 7890</td>
+                                    <td>info@pfizer.bo</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-view btn-sm">👁️</button>
+                                            <button class="btn btn-edit btn-sm">✏️</button>
+                                            <button class="btn btn-delete btn-sm">🗑️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Gestión de Compras -->
+            <div class="section">
+                <div class="section-header">
+                    <h3 class="section-title">🛒 Últimas Compras</h3>
+                    <button class="btn btn-primary btn-sm" onclick="openModal('compraModal')">
+                        ➕ Nueva Compra
+                    </button>
+                </div>
+                <div class="section-content">
+                    <div class="search-container">
+                        <div class="search-icon">🔍</div>
+                        <input type="text" class="search-input" placeholder="Buscar compras...">
+                    </div>
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Proveedor</th>
+                                    <th>Monto</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="comprasTable">
+                                <tr>
+                                    <td>06/06/2025</td>
+                                    <td>Farmacéutica González</td>
+                                    <td>Bs 2,450.00</td>
+                                    <td><span class="badge badge-active">Completado</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-view btn-sm">👁️</button>
+                                            <button class="btn btn-edit btn-sm">✏️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>05/06/2025</td>
+                                    <td>Laboratorios Bayer</td>
+                                    <td>Bs 3,200.00</td>
+                                    <td><span class="badge badge-active">Completado</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-view btn-sm">👁️</button>
+                                            <button class="btn btn-edit btn-sm">✏️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>04/06/2025</td>
+                                    <td>Pfizer Bolivia</td>
+                                    <td>Bs 1,890.00</td>
+                                    <td><span class="badge badge-inactive">Pendiente</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn btn-view btn-sm">👁️</button>
+                                            <button class="btn btn-edit btn-sm">✏️</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Sección de Detalles de Compras -->
+        <div class="section full-width">
+            <div class="section-header">
+                <h3 class="section-title">📊 Detalle de Compras Recientes</h3>
+                <button class="btn btn-secondary btn-sm">📥 Exportar</button>
+            </div>
+            <div class="section-content">
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID Compra</th>
+                                <th>Fecha</th>
+                                <th>Proveedor</th>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Costo Unitario</th>
+                                <th>Importe</th>
+                                <th>Usuario</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>NC-001</td>
+                                <td>06/06/2025</td>
+                                <td>Farmacéutica González</td>
+                                <td>Paracetamol 500mg</td>
+                                <td>100</td>
+                                <td>Bs 2.50</td>
+                                <td>Bs 250.00</td>
+                                <td>María González</td>
+                            </tr>
+                            <tr>
+                                <td>NC-001</td>
+                                <td>06/06/2025</td>
+                                <td>Farmacéutica González</td>
+                                <td>Ibuprofeno 400mg</td>
+                                <td>50</td>
+                                <td>Bs 4.00</td>
+                                <td>Bs 200.00</td>
+                                <td>María González</td>
+                            </tr>
+                            <tr>
+                                <td>NC-002</td>
+                                <td>05/06/2025</td>
+                                <td>Laboratorios Bayer</td>
+                                <td>Aspirina 100mg</td>
+                                <td>200</td>
+                                <td>Bs 1.80</td>
+                                <td>Bs 360.00</td>
+                                <td>Juan Pérez</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Nuevo Proveedor -->
+    <div id="proveedorModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>➕ Nuevo Proveedor</h3>
+                <span class="close" onclick="closeModal('proveedorModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="proveedorForm">
+                    <div class="form-group">
+                        <label class="form-label">Nombre del Proveedor</label>
+                        <input type="text" class="form-input" placeholder="Ingrese el nombre del proveedor" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Dirección</label>
+                        <input type="text" class="form-input" placeholder="Ingrese la dirección" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Teléfono</label>
+                            <input type="tel" class="form-input" placeholder="+591 2 234 5678" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-input" placeholder="correo@ejemplo.com" required>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 15px; justify-content: flex-end; margin-top: 25px;">
+                        <button type="button" class="btn" style="background: #6b7280; color: white;" onclick="closeModal('proveedorModal')">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar Proveedor</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Nueva Compra -->
+    <div id="compraModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🛒 Nueva Compra</h3>
+                <span class="close" onclick="closeModal('compraModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="compraForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Fecha</label>
+                            <input type="date" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Hora</label>
+                            <input type="time" class="form-input" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Proveedor</label>
+                        <select class="form-input" required>
+                            <option value="">Seleccione un proveedor</option>
+                            <option value="1">Farmacéutica González</option>
+                            <option value="2">Laboratorios Bayer</option>
+                            <option value="3">Pfizer Bolivia</option>
+                        </select>
+                    </div>
+                    <h4 style="margin: 25px 0 15px 0; color: #374151;">Productos a Comprar</h4>
+                    <div id="productosCompra">
+                        <div class="form-row" style="align-items: end;">
+                            <div class="form-group">
+                                <label class="form-label">Producto</label>
+                                <select class="form-input" required>
+                                    <option value="">Seleccione un producto</option>
+                                    <option value="1">Paracetamol 500mg</option>
+                                    <option value="2">Ibuprofeno 400mg</option>
+                                    <option value="3">Aspirina 100mg</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Cantidad</label>
+                                <input type="number" class="form-input" placeholder="100" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Costo Unitario</label>
+                                <input type="number" class="form-input" placeholder="2.50" step="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <button type="button" class="btn btn-secondary">➕ Agregar Producto</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-top: 25px;">
+                        <label class="form-label">Monto Total</label>
+                        <input type="number" class="form-input" placeholder="0.00" step="0.01" readonly>
+                    </div>
+                    <div style="display: flex; gap: 15px; justify-content: flex-end; margin-top: 25px;">
+                        <button type="button" class="btn" style="background: #6b7280; color: white;" onclick="closeModal('compraModal')">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Registrar Compra</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Funciones para modales
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        // Cerrar modal al hacer clic fuera de él
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+        // Funciones de búsqueda
+        document.querySelectorAll('.search-input').forEach(input => {
+            input.addEventListener('input', function() {
+                // Aquí implementarías la lógica de búsqueda
+                console.log('Buscando:', this.value);
+            });
+        });
+        // Funciones para manejar formularios
+        document.getElementById('proveedorForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Aquí implementarías la lógica para guardar el proveedor
+            alert('Proveedor guardado exitosamente');
+            closeModal('proveedorModal');
+        });
+        document.getElementById('compraForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // Aquí implementarías la lógica para registrar la compra
+            alert('Compra registrada exitosamente');
+            closeModal('compraModal');
+        });
+        // Animaciones y efectos
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animar las tarjetas de estadísticas
+            const statCards = document.querySelectorAll('.stat-card');
+            statCards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    card.style.transition = 'all 0.5s ease';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
